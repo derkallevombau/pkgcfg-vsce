@@ -1,0 +1,116 @@
+{
+	"name": "__projectName__",
+	"version": "0.1.0",
+	"description": "__desc__",
+	"displayName": "__displayName__",
+	"main": "dist/main.js",
+	"types": "dist/main.d.ts",
+	"files": [
+		"dist"
+	],
+	"author": "__author__",
+	"publisher": "__publisher__",
+	"engines": {
+		"vscode": "^1.55.0"
+	},
+	// Please note: When you have completed your extension manifest,
+	// run "Project Creator: Remove comments from package.json"
+	// or "Project Creator: Remove comments from package.json and commit it"
+	// from the Command Palette before running npm.
+	//
+	// See https://code.visualstudio.com/api/references/extension-manifest
+	"license": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/derkallevombau/__projectName__.git"
+	},
+	"bugs": {
+		"url": "https://github.com/derkallevombau/__projectName__/issues"
+	},
+	"homepage": "https://derkallevombau.github.io/__projectName__/",
+	"icon": "",
+	// See https://code.visualstudio.com/api/references/extension-manifest
+	"keywords": [
+		""
+	],
+	// See https://code.visualstudio.com/api/references/extension-manifest
+	"categories": [
+		""
+	],
+	// See https://code.visualstudio.com/api/references/activation-events
+	"activationEvents": [
+		""
+	],
+	"contributes": {
+		// See https://code.visualstudio.com/api/references/contribution-points#contributes.configuration
+		"configuration": {
+			"title": "__displayName__",
+			"properties": {
+				"__displayNameLoCamelCase__.<Setting key>": {
+					"type": "string",
+					"description": "",
+					"default": ""
+				}
+			}
+		},
+		// See https://code.visualstudio.com/api/references/contribution-points#contributes.configurationDefaults
+		"configurationDefaults": {
+		},
+		// See https://code.visualstudio.com/api/references/contribution-points#contributes.commands
+		"commands": [
+			{
+				"command": "__displayNameLoCamelCase__.<Command>",
+				"title": "",
+				"category": "__displayName__",
+				"icon": {
+					"light": "path/to/light/icon.svg",
+					"dark": "path/to/dark/icon.svg"
+				}
+			}
+		],
+		// See https://code.visualstudio.com/api/references/contribution-points#contributes.menus
+		"menus": {
+			"": [
+				{
+					"command": "__displayNameLoCamelCase__.<Command>",
+					"group": ""
+				}
+			]
+		},
+		// See https://code.visualstudio.com/api/references/contribution-points#contributes.keybindings
+		"keybindings": [
+			{
+				"command": "__displayNameLoCamelCase__.<Command>",
+				"key": ""
+			}
+		]
+		// For further contribution points, see https://code.visualstudio.com/api/references/contribution-points
+	},
+	"config": {
+		"lintCfgSubtreeRepoBasePath": "git@github.com:derkallevombau/lintcfg-ts"
+	},
+	"scripts": {
+		"generateJs": "tsc -p ./ --composite false --removeComments true --declaration false --declarationMap false",
+		"generateDts": "tsc -p ./ --emitDeclarationOnly true",
+		"compile": "npm run generateJs && npm run generateDts",
+		"watch": "tsc --watch -p ./ --noEmitOnError false",
+		"lint": "eslint --ext .ts src",
+		"lintCfgAdd": "[ -e .eslintrc.js ] && echo '.eslintrc.js already exists, exiting.' && exit 1; [ \"$(git branch)\" ] || git commit --allow-empty --no-verify -m 'Initial commit' && git subtree add -P lintcfg-ts --squash \"$npm_package_config_lintCfgSubtreeRepoBasePath\" master || exit; ln -s lintcfg-ts/.eslintrc.js .eslintrc.js && git add .eslintrc.js && git commit -m 'Added symlink .eslintrc.js -> lintcfg-ts/.eslintrc.js.'",
+		"lintCfgPush": "git subtree push -P lintcfg-ts \"$npm_package_config_lintCfgSubtreeRepoBasePath\" master",
+		"lintCfgPull": "git subtree pull -P lintcfg-ts --squash \"$npm_package_config_lintCfgSubtreeRepoBasePath\" master",
+		"regenerateDeps": "x=package-lock.json; y=node_modules; [ -f $x ] && rm $x; [ -d $y ] && rm -r $y; npm i",
+		"vscode:prepublish": "npm run compile",
+		"build-and-inst": "rm -rf *.vsix; vsce package && code --install-extension *.vsix || code-insiders --install-extension *.vsix",
+		"x": "pwd"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.37",
+		"@types/vscode": "^1.55.0",
+		"@typescript-eslint/eslint-plugin": "^4.20.0",
+		"@typescript-eslint/parser": "^4.20.0",
+		"eslint": "^7.23.0",
+		"eslint-plugin-tsdoc": "^0.2.11",
+		"typescript": "^4.2.3",
+		"vsce": "^1.87.1"
+	}
+}
