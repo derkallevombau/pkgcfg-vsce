@@ -1,23 +1,37 @@
 {
 	"name": "__projectName__",
 	"version": "0.1.0",
-	"description": "__desc__",
 	"displayName": "__displayName__",
+	"description": "__desc__",
+	"icon": "",
 	"main": "dist/main.js",
 	"types": "dist/main.d.ts",
 	"files": [
 		"dist"
 	],
-	"author": "__author__",
-	"publisher": "__publisher__",
-	"engines": {
-		"vscode": "^1.55.0"
-	},
 	// Please note: When you have completed your extension manifest,
 	// run "Project Creator: Remove comments from package.json"
 	// or "Project Creator: Remove comments from package.json and commit it"
 	// from the Command Palette before running npm.
 	//
+	// See https://code.visualstudio.com/api/references/extension-manifest
+	"keywords": [
+		""
+	],
+	// See https://code.visualstudio.com/api/references/extension-manifest
+	"categories": [
+		""
+	],
+	"author": {
+		"name": "__author__"
+	},
+	"contributors": [
+		""
+	],
+	"maintainers": [
+		"__author__"
+	],
+	"publisher": "__author__",
 	// See https://code.visualstudio.com/api/references/extension-manifest
 	"license": "",
 	"repository": {
@@ -28,15 +42,6 @@
 		"url": "https://github.com/derkallevombau/__projectName__/issues"
 	},
 	"homepage": "https://derkallevombau.github.io/__projectName__/",
-	"icon": "",
-	// See https://code.visualstudio.com/api/references/extension-manifest
-	"keywords": [
-		""
-	],
-	// See https://code.visualstudio.com/api/references/extension-manifest
-	"categories": [
-		""
-	],
 	// See https://code.visualstudio.com/api/references/activation-events
 	"activationEvents": [
 		""
@@ -102,6 +107,9 @@
 		"vscode:prepublish": "npm run compile",
 		"build-and-inst": "rm -rf *.vsix; vsce package && code --install-extension *.vsix || code-insiders --install-extension *.vsix",
 		"x": "pwd"
+	},
+	"engines": {
+		"vscode": "^1.55.0"
 	},
 	"devDependencies": {
 		"@types/node": "^14.14.37",
